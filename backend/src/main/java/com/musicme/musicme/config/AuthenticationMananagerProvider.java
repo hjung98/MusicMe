@@ -1,4 +1,4 @@
-package com.ninja.demo.config;
+package com.musicme.musicme;
 
 import com.ninja.demo.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;

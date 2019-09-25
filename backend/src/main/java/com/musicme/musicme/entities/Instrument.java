@@ -1,4 +1,5 @@
-package com.ninja.demo.entities;
+package com.musicme.musicme;
+
 
 public class Instrument {
     private String name;

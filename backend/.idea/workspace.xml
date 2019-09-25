@@ -3,16 +3,15 @@
   <component name="ChangeListManager">
     <list default="true" id="9dbd57d9-e90c-4023-98b0-63f36fbbf7df" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DemoApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/AuthenticationMananagerProvider.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/AuthorizationServerConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/ResourceServerConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entities/DirectMessage.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entities/Instrument.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entities/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/entities/Video.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/UserRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/AuthenticationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/musicme/musicme/config/AuthenticationMananagerProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/musicme/musicme/config/AuthenticationMananagerProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/musicme/musicme/config/AuthorizationServerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/musicme/musicme/config/AuthorizationServerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/musicme/musicme/config/ResourceServerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/musicme/musicme/config/ResourceServerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/musicme/musicme/entities/DirectMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/musicme/musicme/entities/DirectMessage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/musicme/musicme/entities/Instrument.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/musicme/musicme/entities/Instrument.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/musicme/musicme/entities/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/musicme/musicme/entities/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/musicme/musicme/entities/Video.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/musicme/musicme/entities/Video.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/musicme/musicme/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/musicme/musicme/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/musicme/musicme/service/AuthenticationService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/musicme/musicme/service/AuthenticationService.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,12 +25,15 @@
   <component name="ProjectId" id="1RKomRHhC6tktFe98WbgNqCVKXh" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs.mocha.mocha_node_package_dir" value="" />
+    <property name="nodejs.protractor.protractor_package" value="" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -60,7 +62,7 @@
       <updated>1569197771103</updated>
       <workItem from="1569197773013" duration="2758000" />
       <workItem from="1569425318456" duration="188000" />
-      <workItem from="1569425522100" duration="215000" />
+      <workItem from="1569425522100" duration="757000" />
     </task>
     <servers />
   </component>

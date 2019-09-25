@@ -1,4 +1,4 @@
-package com.ninja.demo.entities;
+package com.musicme.musicme;
 
 public class Video {
 

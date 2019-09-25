@@ -1,4 +1,5 @@
-package com.ninja.demo.config;
+package com.musicme.musicme;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

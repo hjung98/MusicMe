@@ -1,4 +1,4 @@
-package com.ninja.demo.service;
+package com.musicme.musicme;
 
 
 import com.ninja.demo.repository.UserRepository;

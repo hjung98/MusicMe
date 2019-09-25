@@ -1,4 +1,4 @@
-package com.ninja.demo.repository;
+package com.musicme.musicme;
 
 public class UserRepository {
 }

@@ -1,7 +1,5 @@
-package com.musicme.musicme;
+package com.musicme.musicme.config;
 
-import com.ninja.demo.service.AuthenticationService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,11 +14,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 public class AuthenticationMananagerProvider extends WebSecurityConfigurerAdapter {
 
-    private final AuthenticationService authenticationService;
-    private final UserDetailsService customerUserDetailService;
+    @Autowired
+    private AuthenticationService authenticationService;
+    private UserDetailsService customerUserDetailService;
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
@@ -41,9 +39,6 @@ public class AuthenticationMananagerProvider extends WebSecurityConfigurerAdapte
         auth
                 .userDetailsService(customerUserDetailService)
                 .passwordEncoder(encoder);
-//        auth
-//                .userDetailsService(authenticationService)
-//                .passwordEncoder(encoder);
     }
     @Bean
     @Override

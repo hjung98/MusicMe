@@ -1,48 +1,66 @@
-package com.musicme.musicme;
+package com.musicme.musicme.entities;
 
-import lombok.Data;
-import org.hibernate.annotations.Table;
-import javax.persistence.Entity;
-import org.hibernate.validator.constraints.Length;
-import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
-
-
-@Data
-@Entity
-@Table(name = "user")
 public class User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "user_id")
     private Long id;
 
-    @Column(name = "username")
     private String username;
 
-    @Column(name = "email")
-    @Email(message = "*Please provide a valid Email")
-    @NotEmpty(message = "*Please provide an email")
     private String email;
 
-    @Column(name = "password")
-    @Length(min = 6, message = "*Your password must have at least 6 characters")
-    @NotEmpty(message = "*Please provide your password")
-    private String password;
-
-    @Column(name = "firstName")
-    @NotEmpty(message = "*Please provide your firstName")
     private String firstName;
 
-    @Column(name = "lastName")
-    @NotEmpty(message = "*Please provide your last name")
     private String lastName;
 
-    @Column(name = "active")
-    private int active;
+    public User(Long id, String username, String email, String firstName, String lastName) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
-    @Column(name = "verificationNumber")
-    private int verificationNumber;
+    public User() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
 }

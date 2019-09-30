@@ -1,5 +1,8 @@
 package com.musicme.musicme.entities;
 
+import org.springframework.stereotype.Component;
+
+@Component("User")
 public class User {
 
     private Long id;

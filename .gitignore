@@ -4,7 +4,10 @@
 
 # .class files
 *.class
+backend/target/classes/com/musicme/musicme/*.class
 
 # .* files in the backend
 backend/.*
 
+# Maven Status
+**/maven-status/*

@@ -4,7 +4,7 @@
 
 # .class files
 *.class
-backend/target/classes/com/musicme/musicme/*.class
+**/*.class
 
 # .* files in the backend
 backend/.*

@@ -13,3 +13,4 @@ backend/.*
 **/maven-status/*
 
 .vscode
+.idea

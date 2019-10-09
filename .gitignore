@@ -11,3 +11,5 @@ backend/.*
 
 # Maven Status
 **/maven-status/*
+
+.vscode

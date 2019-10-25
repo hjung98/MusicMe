@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 @Mapper
 public interface UserMapper {
-    @Select("select * from users")
+    @Select("SELECT * from users")
     public List<User> findAll();
 
     @Select("SELECT * FROM users WHERE id = #{id}")

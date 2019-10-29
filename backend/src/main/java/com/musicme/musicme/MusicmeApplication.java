@@ -1,14 +1,9 @@
 package com.musicme.musicme;
 
-import com.musicme.musicme.entities.User;
-import com.musicme.musicme.mappers.UserMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.musicme.musicme.mappers.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 @SpringBootApplication
 public class MusicmeApplication implements CommandLineRunner{
@@ -28,7 +23,11 @@ public class MusicmeApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
+<<<<<<< HEAD
 		logger.debug("running app");
 		System.out.println(this.userMapper.findAll());
+=======
+		System.out.println(this.userRepository.findAll());
+>>>>>>> c4834df86e6b154ffc33ba190d49ca7edf6610f9
 	}
 }

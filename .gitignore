@@ -19,6 +19,6 @@ backend/.*
 **/application.properties
 
 # /bin/ files that don't need to be there
-backend/bin/HELP.md
-backend/bin/mvnw
-backend/bin/mvnw.cmd
+**/HELP.md
+**/mvnw
+**/mvnw.cmd

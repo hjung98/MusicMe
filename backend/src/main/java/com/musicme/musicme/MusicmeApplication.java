@@ -13,26 +13,13 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 @SpringBootApplication
 public class MusicmeApplication implements CommandLineRunner{
 
-//	private Logger logger;
-////
-////	public MusicmeApplication() {
-////		logger = LoggerFactory.getLogger(this.getClass());
-////	}
-////
-////	public void run(String...args) throws Exception {
-////		logger.info("booting application");
-////	}
-////
-////	public static void main(String[] args) {
-////		SpringApplication.run(MusicmeApplication.class, args);
-////	}
-
-
+	private Logger logger;
 
 	private final UserMapper userMapper;
 
 	public MusicmeApplication(UserMapper userMapper) {
 		this.userMapper = userMapper;
+		this.logger = LoggerFactory.getLogger(this.getClass());
 	}
 
 	public static void main(String[] args) {
@@ -41,6 +28,7 @@ public class MusicmeApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
+		logger.debug("running app");
 		System.out.println(this.userMapper.findAll());
 	}
 }

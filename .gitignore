@@ -14,3 +14,7 @@ backend/.*
 
 .vscode
 .idea
+
+/backend/target/classes/application.properties
+**/application.properties
+

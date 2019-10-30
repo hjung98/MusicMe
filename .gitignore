@@ -9,16 +9,10 @@
 # .* files in the backend
 backend/.*
 
-# Maven Status
-**/maven-status/*
-
 .vscode
-.idea
 
 # Application properties
 **/application.properties
 
 # /bin/ files that don't need to be there
 **/HELP.md
-**/mvnw
-**/mvnw.cmd

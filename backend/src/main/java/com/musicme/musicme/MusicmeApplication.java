@@ -17,6 +17,7 @@ public class MusicmeApplication implements CommandLineRunner {
 	}
 
 	public static void main(String[] args) {
+		// establish ssh connection
 		SpringApplication.run(MusicmeApplication.class, args);
 	}
 

@@ -1,29 +1,25 @@
 package com.musicme.musicme;
 
-import com.musicme.musicme.mappers.UserRepository;
+import com.musicme.musicme.services.UserServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MusicmeApplication implements CommandLineRunner{
+public class MusicmeApplication implements CommandLineRunner {
 
-	private Logger logger;
+	@Autowired
+	UserServiceImpl userService;
 
-	private final UserMapper userMapper;
-
-	public MusicmeApplication(UserMapper userMapper) {
-		this.userMapper = userMapper;
-		this.logger = LoggerFactory.getLogger(this.getClass());
+	public MusicmeApplication(UserServiceImpl userService) {
+		this.userService = userService;
 	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(MusicmeApplication.class, args);
 	}
 
-	@Override
 	public void run(String... args) throws Exception {
-		logger.debug("running app");
-		System.out.println(this.userMapper.findAll());
 	}
 }

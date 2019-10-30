@@ -1,18 +1,25 @@
 package com.musicme.musicme.entities;
 
-import org.springframework.stereotype.Component;
+import javax.persistence.*;
 
-@Component("User")
+@Entity
+@Table(name="users")
 public class User {
 
+    @Id
+    @Column(name="id")
     private Long id;
 
+    @Column(name="username")
     private String username;
 
+    @Column(name="email")
     private String email;
 
+    @Column(name="firstname")
     private String firstName;
 
+    @Column(name="lastname")
     private String lastName;
 
     public User(Long id, String username, String email, String firstName, String lastName) {

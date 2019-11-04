@@ -1,6 +1,6 @@
-package com.musicme.musicme.services;
+package com.musicme.musicme.security;
+
 import com.musicme.musicme.config.AppProperties;
-import com.musicme.musicme.security.UserPrincipal;
 import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,4 +60,5 @@ public class TokenProvider {
         }
         return false;
     }
+
 }

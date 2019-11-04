@@ -1,8 +1,8 @@
-package com.musicme.musicme.oauth2;
+package com.musicme.musicme.security.oauth2;
 
 import com.musicme.musicme.config.AppProperties;
 import com.musicme.musicme.exceptions.BadRequestException;
-import com.musicme.musicme.services.TokenProvider;
+import com.musicme.musicme.security.TokenProvider;
 import com.musicme.musicme.util.CookieUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -18,7 +18,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Optional;
 
-import static com.musicme.musicme.oauth2.HttpCookieOAuth2AuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
+import static com.musicme.musicme.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
 
 @Component
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {

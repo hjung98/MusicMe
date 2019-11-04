@@ -1,14 +1,15 @@
-package com.example.springsocial.controller;
+package com.musicme.musicme.controller;
 
-import com.example.springsocial.exception.BadRequestException;
-import com.example.springsocial.model.AuthProvider;
-import com.example.springsocial.model.User;
-import com.example.springsocial.payload.ApiResponse;
-import com.example.springsocial.payload.AuthResponse;
-import com.example.springsocial.payload.LoginRequest;
-import com.example.springsocial.payload.SignUpRequest;
-import com.example.springsocial.repository.UserRepository;
-import com.example.springsocial.security.TokenProvider;
+
+import com.musicme.musicme.Payloads.ApiResponse;
+import com.musicme.musicme.Payloads.AuthResponse;
+import com.musicme.musicme.Payloads.LoginRequest;
+import com.musicme.musicme.Payloads.SignUpRequest;
+import com.musicme.musicme.entities.AuthProvider;
+import com.musicme.musicme.entities.User;
+import com.musicme.musicme.exceptions.BadRequestException;
+import com.musicme.musicme.repositories.UserRepository;
+import com.musicme.musicme.security.TokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

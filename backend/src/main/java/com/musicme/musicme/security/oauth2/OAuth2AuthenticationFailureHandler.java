@@ -1,5 +1,6 @@
-package com.musicme.musicme.oauth2;
+package com.musicme.musicme.security.oauth2;
 
+import com.musicme.musicme.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository;
 import com.musicme.musicme.util.CookieUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;

@@ -1,4 +1,4 @@
-package com.musicme.musicme.security.oauth2;
+package com.musicme.musicme.security.oauth2.user;
 
 import java.util.Map;
 

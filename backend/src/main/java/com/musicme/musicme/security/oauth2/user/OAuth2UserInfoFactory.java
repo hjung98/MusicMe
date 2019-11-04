@@ -1,4 +1,4 @@
-package com.musicme.musicme.security.oauth2;
+package com.musicme.musicme.security.oauth2.user;
 
 import com.musicme.musicme.entities.AuthProvider;
 import com.musicme.musicme.exceptions.OAuth2AuthenticationProcessingException;

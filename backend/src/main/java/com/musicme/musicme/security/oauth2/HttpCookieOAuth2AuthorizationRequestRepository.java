@@ -1,4 +1,4 @@
-package com.musicme.musicme.oauth2;
+package com.musicme.musicme.security.oauth2;
 
 
 import com.musicme.musicme.util.CookieUtils;

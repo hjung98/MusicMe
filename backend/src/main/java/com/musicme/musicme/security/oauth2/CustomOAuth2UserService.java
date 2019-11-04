@@ -1,4 +1,4 @@
-package com.musicme.musicme.security;
+package com.musicme.musicme.security.oauth2;
 
 import com.musicme.musicme.entities.AuthProvider;
 import com.musicme.musicme.entities.User;

@@ -1,36 +1,75 @@
 package com.musicme.musicme.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name="users")
+@Table(name = "users", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "email")
+})
 public class User {
 
     @Id
-    @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="username")
     private String username;
 
+    @JsonIgnore
+    private String password;
+
+    @Column(nullable = false)
+    private Boolean emailVerified = false;
+
     @Column(name="email")
     private String email;
 
-    @Column(name="firstname")
-    private String firstName;
+    @Column(name="name")
+    private String name;
 
-    @Column(name="lastname")
-    private String lastName;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private AuthProvider provider;
 
-    public User(Long id, String username, String email, String firstName, String lastName) {
+    private String providerId;
+
+    private String imageUrl;
+
+    public User(Long id, String username, String email, String name) {
         this.id = id;
         this.username = username;
         this.email = email;
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.name = name;
     }
 
     public User() {
+    }
+
+    public Boolean getEmailVerified() {
+        return emailVerified;
+    }
+
+    public void setEmailVerified(Boolean emailVerified) {
+        this.emailVerified = emailVerified;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public AuthProvider getProvider() {
+        return provider;
+    }
+
+    public void setProvider(AuthProvider provider) {
+        this.provider = provider;
     }
 
     public Long getId() {
@@ -57,20 +96,27 @@ public class User {
         this.email = email;
     }
 
-    public String getFirstName() {
-        return firstName;
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public void setProviderId(String providerId) {
+        this.providerId = providerId;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public String getProviderId() {
+        return providerId;
     }
 
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
 }

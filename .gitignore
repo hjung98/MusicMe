@@ -16,3 +16,5 @@ backend/.*
 
 # /bin/ files that don't need to be there
 **/HELP.md
+
+**/META-INF/*

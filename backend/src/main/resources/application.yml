@@ -1,4 +1,20 @@
+## File Storage Properties
+# All files uploaded through the REST API will be stored in this directory
+file:
+  upload-dir: "/Users/kostas/Desktop/test/"
+
+#DB info
 spring:
+  servlet:
+    multipart:
+      enabled: true
+      # Threshold after which files are written to disk.
+      file-size-threshold: 2KB
+      # Max file size.
+      max-request-size: 200MB
+      # Max file size.
+      max-file-size: 200MB
+
   datasource:
     url: "jdbc:postgresql://127.0.0.1:5432/musicme"
     username: kostas
@@ -19,6 +35,7 @@ spring:
             non_contextual_creation: true
 
         dialect: org.hibernate.dialect.PostgreSQL9Dialect
+  #Auth2 social login info
   security:
     oauth2:
       client:

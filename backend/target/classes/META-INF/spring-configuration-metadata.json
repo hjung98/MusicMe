@@ -16,8 +16,19 @@
       "type": "com.musicme.musicme.config.AppProperties$OAuth2",
       "sourceType": "com.musicme.musicme.config.AppProperties",
       "sourceMethod": "getOauth2()"
+    },
+    {
+      "name": "file",
+      "type": "com.musicme.musicme.config.FileStorageProperties",
+      "sourceType": "com.musicme.musicme.config.FileStorageProperties"
     }
   ],
-  "properties": [],
+  "properties": [
+    {
+      "name": "file.upload-dir",
+      "type": "java.lang.String",
+      "sourceType": "com.musicme.musicme.config.FileStorageProperties"
+    }
+  ],
   "hints": []
 }

@@ -1,6 +1,7 @@
 package com.musicme.musicme;
 
 import com.musicme.musicme.config.AppProperties;
+import com.musicme.musicme.config.FileStorageProperties;
 import com.musicme.musicme.services.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,7 +13,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
 
 @SpringBootApplication
-@EnableConfigurationProperties(AppProperties.class)
+@EnableConfigurationProperties({AppProperties.class, FileStorageProperties.class})
 public class MusicmeApplication{
 
 	public static void main(String[] args) {

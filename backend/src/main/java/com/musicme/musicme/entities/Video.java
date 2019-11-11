@@ -1,32 +1,44 @@
 package com.musicme.musicme.entities;
 
+import javax.persistence.UniqueConstraint;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "videos", uniqueConstraints = {
+    @UniqueConstraint(columnNames = "user_created")
+})
 public class Video {
 
-    private Long id;
-    private String timestamp;
-    private String location;
-    private String caption;
-    private Long likes;
-    private Long shares;
+    @Column(name="user_created")
+    @OneToOne( targetEntity = User.class)
+    private Long userCreated;
 
-    public Video(Long id, String timestamp, String location, String caption, Long likes, Long shares) {
-        this.id = id;
+    @Column(name="timestamp")
+    private String timestamp;
+
+    @Column(name="location")
+    private String location;
+
+    @Column(name="caption")
+    private String caption;
+
+    public Video(Long userCreated, String timestamp, String location, String caption) {
+        this.userCreated = userCreated;
         this.timestamp = timestamp;
         this.location = location;
         this.caption = caption;
-        this.likes = likes;
-        this.shares = shares;
     }
 
     public Video() {
     }
 
-    public Long getId() {
-        return id;
+    public Long getUser() {
+        return userCreated;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUser(Long user) {
+        this.userCreated = user;
     }
 
     public String getTimestamp() {
@@ -53,19 +65,4 @@ public class Video {
         this.caption = caption;
     }
 
-    public Long getLikes() {
-        return likes;
-    }
-
-    public void setLikes(Long likes) {
-        this.likes = likes;
-    }
-
-    public Long getShares() {
-        return shares;
-    }
-
-    public void setShares(Long shares) {
-        this.shares = shares;
-    }
 }

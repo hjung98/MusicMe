@@ -1,15 +1,17 @@
 package com.musicme.musicme.controller;
 
 import com.musicme.musicme.entities.User;
+import com.musicme.musicme.entities.Video;
 import com.musicme.musicme.security.CurrentUser;
 import com.musicme.musicme.security.UserPrincipal;
 import com.musicme.musicme.services.UserServiceImpl;
+import com.musicme.musicme.services.VideoServiceImpl;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 @RestController
@@ -17,6 +19,9 @@ public class UserController {
 
     @Autowired
     UserServiceImpl userService;
+
+    @Autowired
+    VideoServiceImpl videoService;
 
     @RequestMapping("/")
     public String getUsers() {
@@ -44,4 +49,11 @@ public class UserController {
     public User getCurrentUser(@CurrentUser UserPrincipal userPrincipal) {
         return this.userService.getCurrentUser(userPrincipal);
     }
+
+    @RequestMapping("/user/myvideos")
+    public List<Video> getUserVideos(@CurrentUser UserPrincipal userPrincipal) {
+        User user = getCurrentUser(userPrincipal);
+        return this.videoService.getByUser(user.getId());
+    }
+
 }

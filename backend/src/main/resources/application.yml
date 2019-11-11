@@ -10,13 +10,13 @@ spring:
     database: POSTGRESQL
     show-sql: true
     hibernate:
-      ddl-auto: update
+     ddl-auto: update
       naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQL9Dialect
-  security:
-    oauth2:
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQL9Dialect
+      security:
+        oauth2:
       client:
         registration:
           google:

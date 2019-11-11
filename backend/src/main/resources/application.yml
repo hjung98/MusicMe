@@ -1,7 +1,7 @@
 ## File Storage Properties
 # All files uploaded through the REST API will be stored in this directory
 file:
-  upload-dir: "/Users/kostas/Desktop/test/"
+  upload-dir: /Users/kostas/Desktop/test/
 
 #DB info
 spring:

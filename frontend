@@ -7,44 +7,71 @@ import {
   StyleSheet,
   ImageBackground,
   Dimensions,
+  ActivityIndicator,
 } from 'react-native';
 import config from '../../config';
-class Register extends Component {
+import AsyncStorage from '@react-native-community/async-storage';
+
+const ACCESS_TOKEN = 'access_token';
+
+class Login extends Component {
   constructor() {
     super();
     this.state = {
       credentials: {
-        name: '',
         email: '',
         password: '',
       },
       error: '',
+      showProgress: false,
     };
   }
-  async register() {
-    const singUpRequest = Object.assign({}, this.state.credentials);
 
-    fetch('http://localhost:8080/auth/signup', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(singUpRequest),
-    });
-    let res = await response.text();
-    console.log(res);
-    if (response.status >= 200 && response.status < 300) {
-      this.props.navigation.navigate('login');
-    } else {
-      //Handle error
-      let error = res;
-      throw error;
-    }
-    this.setState({
-      error: 'Invalid Information',
+  storeToken(responseData) {
+    AsyncStorage.setItem(ACCESS_TOKEN, responseData, err => {
+      if (err) {
+        console.log('an error');
+        throw err;
+      }
+      console.log('success');
+    }).catch(err => {
+      console.log('error is: ' + err);
     });
   }
+  async login() {
+    const loginRequest = Object.assign({}, this.state.credentials);
+
+    this.setState({showProgress: true});
+    try {
+      let response = await fetch('http://localhost:8080/auth/login', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(loginRequest),
+      });
+      let res = await response.text();
+      console.log(res);
+      if (response.status >= 200 && response.status < 300) {
+        //Handle success
+        let accessToken = res;
+        console.log(accessToken);
+        //On success we will store the access_token in the AsyncStorage
+        this.storeToken(accessToken);
+        this.props.navigation.navigate('camera');
+      } else {
+        //Handle error
+        let error = res;
+        throw error;
+      }
+    } catch (error) {
+      this.setState({error: 'Invalid Credentials'});
+      console.log('error ' + error);
+      this.setState({showProgress: false});
+    }
+  }
+
   updateText(text, field) {
     //Because it is an object, we have to do Objectassign so that we assign a new pointer in memory
     let newCredentials = Object.assign(this.state.credentials);
@@ -61,15 +88,8 @@ class Register extends Component {
           style={styles.backgroundImage}
           source={config.images.signupImage}>
           <View style={styles.container}>
-            <Text style={{marginBottom: 10, color: '#FFFFFF'}}>
-              Register Page
-            </Text>
-            <TextInput
-              onChangeText={text => this.updateText(text, 'name')}
-              placeholder="Name"
-              style={styles.input}
-              autoCorrect={false}
-            />
+            <Text style={{marginBottom: 10, color: '#FFFFFF'}}>Login</Text>
+
             <TextInput
               onChangeText={text => this.updateText(text, 'email')}
               placeholder="Email"
@@ -80,24 +100,43 @@ class Register extends Component {
             <TextInput
               autoCapitalize={false}
               onChangeText={text => this.updateText(text, 'password')}
-              secureTextEntry={true}
+              secureTextEntry
               placeholder="Password"
               style={styles.input}
               autoCorrect={false}
             />
-            <Button
-              style={{color: 'white'}}
-              title="Sign Up"
-              onPress={this.register.bind(this)}
-            />
-
+            <View />
+            <View style={styles.buttonContainer}>
+              <Button
+                style={{position: 'absolute', left: 0}}
+                title="Login"
+                onPress={this.login.bind(this)}
+              />
+              <Button
+                title="New User?"
+                onPress={() => this.props.navigation.navigate('register')}
+              />
+            </View>
             <Text style={styles.error}>{this.state.error}</Text>
+
+            <ActivityIndicator
+              animating={this.state.showProgress}
+              size="large"
+              style={styles.loader}
+            />
           </View>
         </ImageBackground>
       </View>
     );
   }
 }
+const mapStateToProps = state => ({
+  token: state.token,
+});
+
+const mapDispatchToProps = dispatch => ({
+  saveUserToken: () => dispatch(saveUserToken()),
+});
 
 const styles = StyleSheet.create({
   input: {
@@ -107,6 +146,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     marginBottom: 10,
     backgroundColor: '#FFFFFF',
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
   container: {
     height: '100%',
@@ -123,6 +166,13 @@ const styles = StyleSheet.create({
     color: 'red',
     paddingTop: 10,
   },
+  success: {
+    color: 'green',
+    paddingTop: 10,
+  },
+  loader: {
+    marginTop: 20,
+  },
 });
 
-export default Register;
+export default Login;

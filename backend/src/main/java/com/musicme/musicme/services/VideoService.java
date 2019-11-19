@@ -9,7 +9,7 @@ public interface VideoService {
 
     List<Video> listAll();
 
-    List<Video> getByUser(String userEmail);
+    List<Video> getByUser(Long userId);
 
     Video saveOrUpdate(Video video);
 

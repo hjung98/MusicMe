@@ -11,11 +11,9 @@ import java.util.List;
 
 @Repository
 @EnableJpaRepositories
-public interface VideoRepository extends JpaRepository<Video, Long> {
-    
-    List<Video> findByVideoIdentityUserEmail(String userEmail);
+public interface VideoRepository extends JpaRepository<Video, VideoIdentity> {
 
-    Video findByVideoIdentity(VideoIdentity videoId);
+    List<Video> findByVideoIdentity(VideoIdentity videoId);
 
     void deleteByVideoIdentity(VideoIdentity videoId);
 

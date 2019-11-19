@@ -11,8 +11,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 public class MusicmeApplication{
 
 	public static void main(String[] args) {
-		// establish ssh connection
 		SpringApplication.run(MusicmeApplication.class, args);
 	}
 }
-

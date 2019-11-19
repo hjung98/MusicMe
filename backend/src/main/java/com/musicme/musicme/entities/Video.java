@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Video {
 
     @EmbeddedId
-    private VideoIdentity videoId;
+    private VideoIdentity videoIdentity;
 
     @Column(name="location")
     private String location;
@@ -15,8 +15,8 @@ public class Video {
     @Column(name="caption")
     private String caption;
 
-    public Video(VideoIdentity videoId, String location, String caption) {
-        this.videoId = videoId;
+    public Video(VideoIdentity videoIdentity, String location, String caption) {
+        this.videoIdentity = videoIdentity;
         this.location = location;
         this.caption = caption;
     }
@@ -24,12 +24,12 @@ public class Video {
     public Video() {
     }
 
-    public VideoIdentity getVideoId() {
-        return this.videoId;
+    public VideoIdentity getVideoIdentity() {
+        return this.videoIdentity;
     }
 
-    public void setVideoId(VideoIdentity videoId) {
-        this.videoId = videoId;
+    public void setVideoIdentity(VideoIdentity videoIdentity) {
+        this.videoIdentity = videoIdentity;
     }
 
     public String getLocation() {

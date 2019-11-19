@@ -38,7 +38,7 @@ public class FileStorageService {
 
     public String storeFile(MultipartFile file, Long id) {
 
-        new File(String.format("/Users/kostas/Desktop/test/%s", id)).mkdir();
+        new File(String.format("/Users/HarryJung/Desktop/test/%s", id)).mkdir();
 
         // Normalize file name
         String fileName = StringUtils.cleanPath(String.format("%s/%s", id, file.getOriginalFilename()));

@@ -1,21 +1,13 @@
 package com.musicme.musicme.entities;
 
-import javax.persistence.UniqueConstraint;
-
 import javax.persistence.*;
 
 @Entity
-@Table(name = "videos", uniqueConstraints = {
-    @UniqueConstraint(columnNames = "user_created")
-})
+@Table(name = "videos")
 public class Video {
 
-    @Column(name="user_created")
-    @OneToOne( targetEntity = User.class)
-    private Long userCreated;
-
-    @Column(name="timestamp")
-    private String timestamp;
+    @EmbeddedId
+    private VideoIdentity videoId;
 
     @Column(name="location")
     private String location;
@@ -23,9 +15,8 @@ public class Video {
     @Column(name="caption")
     private String caption;
 
-    public Video(Long userCreated, String timestamp, String location, String caption) {
-        this.userCreated = userCreated;
-        this.timestamp = timestamp;
+    public Video(VideoIdentity videoId, String location, String caption) {
+        this.videoId = videoId;
         this.location = location;
         this.caption = caption;
     }
@@ -33,20 +24,12 @@ public class Video {
     public Video() {
     }
 
-    public Long getUser() {
-        return userCreated;
+    public VideoIdentity getVideoId() {
+        return this.videoId;
     }
 
-    public void setUser(Long user) {
-        this.userCreated = user;
-    }
-
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+    public void setVideoId(VideoIdentity videoId) {
+        this.videoId = videoId;
     }
 
     public String getLocation() {

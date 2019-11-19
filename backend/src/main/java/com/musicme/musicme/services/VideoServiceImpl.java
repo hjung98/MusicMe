@@ -1,7 +1,7 @@
 package com.musicme.musicme.services;
 
 import com.musicme.musicme.entities.Video;
-import com.musicme.musicme.exceptions.ResourceNotFoundException;
+import com.musicme.musicme.entities.VideoIdentity;
 import com.musicme.musicme.repositories.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -29,9 +29,9 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public List<Video> getByUser(Long user_id) {
+    public List<Video> getByUser(String userEmail) {
         List<Video> videos = new ArrayList<Video>();
-        videoRepository.findByUser(user_id).forEach(videos::add);
+        videoRepository.findByVideoIdentityUserEmail(userEmail).forEach(videos::add);
         return videos;
     }
 
@@ -42,8 +42,8 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public void delete(Long user_id, String timestamp) {
-        videoRepository.deleteSpecific(user_id, timestamp);
+    public void delete(VideoIdentity videoId) {
+        videoRepository.deleteByVideoIdentity(videoId);
     }
 
 }

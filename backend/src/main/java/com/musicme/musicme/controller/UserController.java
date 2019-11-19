@@ -53,7 +53,7 @@ public class UserController {
     @RequestMapping("/user/myvideos")
     public List<Video> getUserVideos(@CurrentUser UserPrincipal userPrincipal) {
         User user = getCurrentUser(userPrincipal);
-        return this.videoService.getByUser(user.getId());
+        return this.videoService.getByUser(user.getEmail());
     }
 
 }

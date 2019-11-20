@@ -15,10 +15,14 @@ public class Video {
     @Column(name="caption")
     private String caption;
 
-    public Video(VideoIdentity videoIdentity, String location, String caption) {
+    @Column(name="path_to_video")
+    private String pathToVideo;
+
+    public Video(VideoIdentity videoIdentity, String location, String caption, String pathToVideo) {
         this.videoIdentity = videoIdentity;
         this.location = location;
         this.caption = caption;
+        this.pathToVideo = pathToVideo;
     }
 
     public Video() {
@@ -46,6 +50,14 @@ public class Video {
 
     public void setCaption(String caption) {
         this.caption = caption;
+    }
+
+    public String getPathToVideo() {
+        return this.pathToVideo;
+    }
+
+    public void setPathToVideo(String pathToVideo) {
+        this.pathToVideo = pathToVideo;
     }
 
 }

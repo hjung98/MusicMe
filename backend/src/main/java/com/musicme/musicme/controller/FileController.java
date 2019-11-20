@@ -1,7 +1,9 @@
 package com.musicme.musicme.controller;
 
-
+import com.musicme.musicme.entities.*;
 import com.musicme.musicme.entities.UploadFileResponse;
+import com.musicme.musicme.repositories.UserRepository;
+import com.musicme.musicme.repositories.VideoRepository;
 import com.musicme.musicme.services.FileStorageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,11 +15,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.mock.web.MockMultipartFile;
+
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.nio.file.Files;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 @RestController
 public class FileController {
@@ -27,6 +35,12 @@ public class FileController {
     @Autowired
     private FileStorageService fileStorageService;
 
+    @Autowired
+    private VideoController videoController;
+
+    @Autowired
+    private UserRepository userRepository;
+
     @PostMapping("/{id}/uploadMultipleFiles/")
     public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files, @PathVariable Long id) {
         return Arrays.asList(files)
@@ -35,17 +49,27 @@ public class FileController {
                 .collect(Collectors.toList());
     }
 
+    // On the assumption that to upload a video, you must be a user in our database
     @PostMapping("/uploadFile/{id}")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file, @PathVariable Long id) {
-        String fileName = fileStorageService.storeFile(file, id);
+        // Changing file name to match {id}_{year}_{month}_{day}_{hour}_{minute}_{second} format
+        String timestamp = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(new Date());
+        String newFileName = "" + id + "_" + timestamp;
+        String oldFileName = file.getOriginalFilename();
+        String[] parsedFileName = oldFileName.split("\\.");
+        newFileName += "." + parsedFileName[parsedFileName.length - 1];
 
+        String fileName = fileStorageService.storeFile(file, id, newFileName);
 
         String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
                 .path("/downloads/")
                 .path(fileName)
                 .toUriString();
 
-        System.out.println(fileDownloadUri);
+        User user = userRepository.findById(id).get();
+        VideoIdentity videoIdentity = new VideoIdentity(user, timestamp);
+        Video video = new Video(videoIdentity, "", "wow, look at this file!", fileName);
+        videoController.saveOrUpdate(video);
         return new UploadFileResponse(fileName, fileDownloadUri,
                 file.getContentType(), file.getSize());
     }

@@ -36,12 +36,12 @@ public class FileStorageService {
         }
     }
 
-    public String storeFile(MultipartFile file, Long id) {
+    public String storeFile(MultipartFile file, Long id, String newFileName) {
 
         new File(String.format("/Users/HarryJung/Desktop/test/%s", id)).mkdir();
 
         // Normalize file name
-        String fileName = StringUtils.cleanPath(String.format("%s/%s", id, file.getOriginalFilename()));
+        String fileName = StringUtils.cleanPath(String.format("%s/%s", id, newFileName));
 
         try {
             // Check if the file's name contains invalid characters

@@ -1,40 +1,39 @@
 package com.musicme.musicme.entities;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "videos")
 public class Video {
 
-    private Long id;
-    private String timestamp;
-    private String location;
-    private String caption;
-    private Long likes;
-    private Long shares;
+    @EmbeddedId
+    private VideoIdentity videoIdentity;
 
-    public Video(Long id, String timestamp, String location, String caption, Long likes, Long shares) {
-        this.id = id;
-        this.timestamp = timestamp;
+    @Column(name="location")
+    private String location;
+
+    @Column(name="caption")
+    private String caption;
+
+    @Column(name="path_to_video")
+    private String pathToVideo;
+
+    public Video(VideoIdentity videoIdentity, String location, String caption, String pathToVideo) {
+        this.videoIdentity = videoIdentity;
         this.location = location;
         this.caption = caption;
-        this.likes = likes;
-        this.shares = shares;
+        this.pathToVideo = pathToVideo;
     }
 
     public Video() {
     }
 
-    public Long getId() {
-        return id;
+    public VideoIdentity getVideoIdentity() {
+        return this.videoIdentity;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(String timestamp) {
-        this.timestamp = timestamp;
+    public void setVideoIdentity(VideoIdentity videoIdentity) {
+        this.videoIdentity = videoIdentity;
     }
 
     public String getLocation() {
@@ -53,19 +52,12 @@ public class Video {
         this.caption = caption;
     }
 
-    public Long getLikes() {
-        return likes;
+    public String getPathToVideo() {
+        return this.pathToVideo;
     }
 
-    public void setLikes(Long likes) {
-        this.likes = likes;
+    public void setPathToVideo(String pathToVideo) {
+        this.pathToVideo = pathToVideo;
     }
 
-    public Long getShares() {
-        return shares;
-    }
-
-    public void setShares(Long shares) {
-        this.shares = shares;
-    }
 }

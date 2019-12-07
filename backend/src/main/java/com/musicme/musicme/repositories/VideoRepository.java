@@ -17,4 +17,6 @@ public interface VideoRepository extends JpaRepository<Video, VideoIdentity> {
 
     Video deleteByVideoIdentity(VideoIdentity videoId);
 
+    Video findByPathToVideo(String pathToVideo);
+
 }

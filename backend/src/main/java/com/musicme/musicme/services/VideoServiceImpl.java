@@ -53,6 +53,11 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
+    public Video getByPathToVideo(String pathToVideo) {
+        return videoRepository.findByPathToVideo(pathToVideo);
+    }
+
+    @Override
     public Video saveOrUpdate(Video video) {
         videoRepository.save(video);
         return video;

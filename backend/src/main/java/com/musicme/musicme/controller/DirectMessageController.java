@@ -1,10 +1,12 @@
 package com.musicme.musicme.controller;
 
 import com.musicme.musicme.entities.User;
+import com.musicme.musicme.entities.Video;
 import com.musicme.musicme.entities.DirectMessage;
 import com.musicme.musicme.entities.DirectMessageIdentity;
 import com.musicme.musicme.services.UserServiceImpl;
 import com.musicme.musicme.services.DirectMessageServiceImpl;
+import com.musicme.musicme.services.VideoServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +24,9 @@ public class DirectMessageController {
     UserServiceImpl userService;
 
     @Autowired
+    VideoServiceImpl videoService;
+
+    @Autowired
     DirectMessageServiceImpl directMessageService;
 
     @GetMapping("/user/dm")
@@ -35,8 +40,8 @@ public class DirectMessageController {
         User user2 = this.userService.getById(id2);
         DirectMessageIdentity directMessageIdentity = new DirectMessageIdentity(user1, user2, new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(new Date()));
 
-        // TODO get the actual video
-        DirectMessage directMessage = new DirectMessage(directMessageIdentity, content, null);
+        Video video = this.videoService.getByPathToVideo(pathToVideo);
+        DirectMessage directMessage = new DirectMessage(directMessageIdentity, content, video);
         return this.directMessageService.sendMessage(directMessage);
     }
 

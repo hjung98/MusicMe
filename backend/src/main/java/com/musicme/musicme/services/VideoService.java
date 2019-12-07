@@ -13,6 +13,6 @@ public interface VideoService {
 
     Video saveOrUpdate(Video video);
 
-    void delete(VideoIdentity videoId);
+    Video delete(VideoIdentity videoId);
 
 }

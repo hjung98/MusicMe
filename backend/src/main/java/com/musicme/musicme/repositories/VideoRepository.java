@@ -15,6 +15,6 @@ public interface VideoRepository extends JpaRepository<Video, VideoIdentity> {
 
     List<Video> findByVideoIdentity(VideoIdentity videoId);
 
-    void deleteByVideoIdentity(VideoIdentity videoId);
+    Video deleteByVideoIdentity(VideoIdentity videoId);
 
 }

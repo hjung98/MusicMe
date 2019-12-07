@@ -53,7 +53,7 @@ public class VideoIdentity implements Serializable{
 
     @Override
     public int hashCode() {
-        int result = user.getEmail().hashCode();
+        int result = user.getId().hashCode();
         result = 31 * result + timestamp.hashCode();
 
         return result;

@@ -59,8 +59,8 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public void delete(VideoIdentity videoId) {
-        videoRepository.deleteByVideoIdentity(videoId);
+    public Video delete(VideoIdentity videoId) {
+        return videoRepository.deleteByVideoIdentity(videoId);
     }
 
 }

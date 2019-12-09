@@ -3,6 +3,7 @@ package com.musicme.musicme.security.oauth2.user;
 import java.util.Map;
 
 public class FacebookOAuth2UserInfo extends OAuth2UserInfo {
+
     public FacebookOAuth2UserInfo(Map<String, Object> attributes) {
         super(attributes);
     }
@@ -35,4 +36,5 @@ public class FacebookOAuth2UserInfo extends OAuth2UserInfo {
         }
         return null;
     }
+    
 }

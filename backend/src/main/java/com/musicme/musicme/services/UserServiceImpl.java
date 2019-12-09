@@ -5,10 +5,10 @@ import com.musicme.musicme.exceptions.ResourceNotFoundException;
 import com.musicme.musicme.repositories.UserRepository;
 import com.musicme.musicme.security.CurrentUser;
 import com.musicme.musicme.security.UserPrincipal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 

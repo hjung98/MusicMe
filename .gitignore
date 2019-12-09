@@ -12,7 +12,8 @@ backend/.*
 .vscode
 
 # Application properties
-**/application.properties
+# Although it's good practice to not include sensitive information like this, doesn't really matter for us since dev scope is within group
+# **/application.properties
 
 # /bin/ files that don't need to be there
 **/HELP.md

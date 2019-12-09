@@ -1,8 +1,15 @@
 package com.musicme.musicme.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Column;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
+import javax.persistence.UniqueConstraint;
+import javax.persistence.GenerationType;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -119,4 +126,5 @@ public class User {
     public String getImageUrl() {
         return imageUrl;
     }
+
 }

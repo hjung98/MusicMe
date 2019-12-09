@@ -1,4 +1,4 @@
-package com.musicme.musicme.Payloads;
+package com.musicme.musicme.payloads;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -8,6 +8,7 @@ import javax.validation.constraints.NotBlank;
  */
 
 public class SignUpRequest {
+
     @NotBlank
     private String name;
 
@@ -41,4 +42,5 @@ public class SignUpRequest {
     public void setPassword(String password) {
         this.password = password;
     }
+    
 }

@@ -7,6 +7,7 @@ import com.musicme.musicme.security.oauth2.CustomOAuth2UserService;
 import com.musicme.musicme.security.oauth2.HttpCookieOAuth2AuthorizationRequestRepository;
 import com.musicme.musicme.security.oauth2.OAuth2AuthenticationFailureHandler;
 import com.musicme.musicme.security.oauth2.OAuth2AuthenticationSuccessHandler;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +21,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -136,4 +136,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // Add our custom Token based authentication filter
         http.addFilterBefore(tokenAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
     }
+    
 }

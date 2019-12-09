@@ -7,6 +7,7 @@ import com.musicme.musicme.repositories.UserRepository;
 import com.musicme.musicme.security.UserPrincipal;
 import com.musicme.musicme.security.oauth2.user.OAuth2UserInfo;
 import com.musicme.musicme.security.oauth2.user.OAuth2UserInfoFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.AuthenticationException;
@@ -16,7 +17,6 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
-
 import java.util.Optional;
 
 @Service

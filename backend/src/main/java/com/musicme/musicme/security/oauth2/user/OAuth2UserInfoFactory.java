@@ -22,4 +22,5 @@ public class OAuth2UserInfoFactory {
             throw new OAuth2AuthenticationProcessingException("Sorry! Login with " + registrationId + " is not supported yet.");
         }
     }
+    
 }

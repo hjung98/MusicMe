@@ -1,6 +1,7 @@
-package com.musicme.musicme.Payloads;
+package com.musicme.musicme.payloads;
 
 public class ApiResponse {
+
     private boolean success;
     private String message;
 
@@ -24,4 +25,5 @@ public class ApiResponse {
     public void setMessage(String message) {
         this.message = message;
     }
+
 }

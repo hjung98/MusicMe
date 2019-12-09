@@ -1,15 +1,15 @@
 package com.musicme.musicme.controller;
 
-
-import com.musicme.musicme.Payloads.ApiResponse;
-import com.musicme.musicme.Payloads.AuthResponse;
-import com.musicme.musicme.Payloads.LoginRequest;
-import com.musicme.musicme.Payloads.SignUpRequest;
+import com.musicme.musicme.payloads.ApiResponse;
+import com.musicme.musicme.payloads.AuthResponse;
+import com.musicme.musicme.payloads.LoginRequest;
+import com.musicme.musicme.payloads.SignUpRequest;
 import com.musicme.musicme.entities.AuthProvider;
 import com.musicme.musicme.entities.User;
 import com.musicme.musicme.exceptions.BadRequestException;
 import com.musicme.musicme.repositories.UserRepository;
 import com.musicme.musicme.security.TokenProvider;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,7 +19,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import javax.validation.Valid;
 import java.net.URI;
 
@@ -39,6 +38,7 @@ public class LoginSignupController {
     @Autowired
     private TokenProvider tokenProvider;
 
+    // API for loging in
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
@@ -51,10 +51,12 @@ public class LoginSignupController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
+        // TODO rather than sending the auth token, just check OK code and send User entity
         String token = tokenProvider.createToken(authentication);
         return ResponseEntity.ok(new AuthResponse(token));
     }
 
+    // API for signing up
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpRequest signUpRequest) {
         if(userRepository.existsByEmail(signUpRequest.getEmail())) {

@@ -30,9 +30,114 @@
       "sourceType": "com.musicme.musicme.config.AppProperties$Auth"
     },
     {
+      "name": "app.auth.token-expiration-msec",
+      "type": "java.lang.Long",
+      "sourceType": "com.musicme.musicme.config.AppProperties$Auth"
+    },
+    {
+      "name": "app.auth.token-expiration-msec",
+      "type": "java.lang.Long",
+      "sourceType": "com.musicme.musicme.config.AppProperties$Auth"
+    },
+    {
+      "name": "app.auth.token-expiration-msec",
+      "type": "java.lang.Long",
+      "sourceType": "com.musicme.musicme.config.AppProperties$Auth"
+    },
+    {
+      "name": "app.auth.token-expiration-msec",
+      "type": "java.lang.Long",
+      "sourceType": "com.musicme.musicme.config.AppProperties$Auth"
+    },
+    {
+      "name": "app.auth.token-expiration-msec",
+      "type": "java.lang.Long",
+      "sourceType": "com.musicme.musicme.config.AppProperties$Auth"
+    },
+    {
+      "name": "app.auth.token-expiration-msec",
+      "type": "java.lang.Long",
+      "sourceType": "com.musicme.musicme.config.AppProperties$Auth"
+    },
+    {
+      "name": "app.auth.token-expiration-msec",
+      "type": "java.lang.Long",
+      "sourceType": "com.musicme.musicme.config.AppProperties$Auth"
+    },
+    {
       "name": "app.auth.token-secret",
       "type": "java.lang.String",
       "sourceType": "com.musicme.musicme.config.AppProperties$Auth"
+    },
+    {
+      "name": "app.auth.token-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.musicme.musicme.config.AppProperties$Auth"
+    },
+    {
+      "name": "app.auth.token-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.musicme.musicme.config.AppProperties$Auth"
+    },
+    {
+      "name": "app.auth.token-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.musicme.musicme.config.AppProperties$Auth"
+    },
+    {
+      "name": "app.auth.token-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.musicme.musicme.config.AppProperties$Auth"
+    },
+    {
+      "name": "app.auth.token-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.musicme.musicme.config.AppProperties$Auth"
+    },
+    {
+      "name": "app.auth.token-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.musicme.musicme.config.AppProperties$Auth"
+    },
+    {
+      "name": "app.auth.token-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.musicme.musicme.config.AppProperties$Auth"
+    },
+    {
+      "name": "app.oauth2.authorized-redirect-uris",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.musicme.musicme.config.AppProperties$OAuth2"
+    },
+    {
+      "name": "app.oauth2.authorized-redirect-uris",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.musicme.musicme.config.AppProperties$OAuth2"
+    },
+    {
+      "name": "app.oauth2.authorized-redirect-uris",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.musicme.musicme.config.AppProperties$OAuth2"
+    },
+    {
+      "name": "app.oauth2.authorized-redirect-uris",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.musicme.musicme.config.AppProperties$OAuth2"
+    },
+    {
+      "name": "app.oauth2.authorized-redirect-uris",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.musicme.musicme.config.AppProperties$OAuth2"
+    },
+    {
+      "name": "app.oauth2.authorized-redirect-uris",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.musicme.musicme.config.AppProperties$OAuth2"
+    },
+    {
+      "name": "app.oauth2.authorized-redirect-uris",
+      "type": "java.util.List<java.lang.String>",
+      "sourceType": "com.musicme.musicme.config.AppProperties$OAuth2"
     },
     {
       "name": "app.oauth2.authorized-redirect-uris",

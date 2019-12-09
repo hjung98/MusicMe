@@ -1,6 +1,9 @@
 package com.musicme.musicme.entities;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 
 @Entity
 @Table(name = "videos")

@@ -1,8 +1,7 @@
 package com.musicme.musicme.exceptions;
 
-
-
 public class FileStorageException extends RuntimeException {
+
     public FileStorageException(String message) {
         super(message);
     }
@@ -10,4 +9,5 @@ public class FileStorageException extends RuntimeException {
     public FileStorageException(String message, Throwable cause) {
         super(message, cause);
     }
+    
 }

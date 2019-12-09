@@ -1,6 +1,7 @@
 package com.musicme.musicme.entities;
 
 public class UploadFileResponse {
+    
     private String fileName;
     private String fileDownloadUri;
     private String fileType;
@@ -44,4 +45,5 @@ public class UploadFileResponse {
     public void setSize(long size) {
         this.size = size;
     }
+
 }

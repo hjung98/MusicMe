@@ -5,6 +5,7 @@ import com.musicme.musicme.entities.UploadFileResponse;
 import com.musicme.musicme.repositories.UserRepository;
 import com.musicme.musicme.repositories.VideoRepository;
 import com.musicme.musicme.services.FileStorageService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
@@ -31,20 +30,13 @@ public class FileController {
     private FileStorageService fileStorageService;
 
     @Autowired
-    private VideoController videoController;
+    private VideoRepository videoRepository;
 
     @Autowired
     private UserRepository userRepository;
 
-    // @PostMapping("/{id}/uploadMultipleFiles/")
-    // public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files, @PathVariable Long id) {
-    //     return Arrays.asList(files)
-    //             .stream()
-    //             .map(file -> uploadFile(file, id, caption))
-    //             .collect(Collectors.toList());
-    // }
-
     // On the assumption that to upload a video, you must be a user in our database
+    // API for uploading file into /MusicMeVideos/ directory and saving into Videos table
     @PostMapping("/uploadFile/{id}")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file, @PathVariable Long id, String caption) {
         // Changing file name to match {id}_{year}_{month}_{day}_{hour}_{minute}_{second} format
@@ -63,11 +55,12 @@ public class FileController {
         User user = userRepository.findById(id).get();
         VideoIdentity videoIdentity = new VideoIdentity(user, timestamp);
         Video video = new Video(videoIdentity, "", caption, fileName);
-        videoController.saveOrUpdate(video);
+        videoRepository.save(video);
         return new UploadFileResponse(fileName, fileDownloadUri,
                 file.getContentType(), file.getSize());
     }
 
+    // API for downloading video from videos directory
     @GetMapping("/downloadFile/{id}/{fileName:.+}")
     public ResponseEntity<Resource> downloadFile(@PathVariable String fileName, @PathVariable Long id, HttpServletRequest request) {
         // Load file as Resource
@@ -91,4 +84,5 @@ public class FileController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
                 .body(resource);
     }
+    
 }

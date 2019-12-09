@@ -3,6 +3,7 @@ package com.musicme.musicme.security;
 import com.musicme.musicme.entities.User;
 import com.musicme.musicme.exceptions.ResourceNotFoundException;
 import com.musicme.musicme.repositories.UserRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -40,4 +41,5 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         return UserPrincipal.create(user);
     }
+
 }

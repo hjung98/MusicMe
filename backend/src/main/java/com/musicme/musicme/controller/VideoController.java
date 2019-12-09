@@ -14,13 +14,10 @@ public class VideoController {
     @Autowired
     VideoServiceImpl videoService;
 
+    // API for displaying all videos for the Feed
     @GetMapping("/feed")
     public List<Video> getVideos() {
         return this.videoService.listAll();
-    }
-
-    public Video saveOrUpdate(Video video) {
-        return this.videoService.saveOrUpdate(video);
     }
 
 }

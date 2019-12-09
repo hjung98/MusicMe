@@ -1,6 +1,7 @@
-package com.musicme.musicme.Payloads;
+package com.musicme.musicme.payloads;
 
 public class AuthResponse {
+
     private String accessToken;
     private String tokenType = "Bearer";
 
@@ -23,4 +24,5 @@ public class AuthResponse {
     public void setTokenType(String tokenType) {
         this.tokenType = tokenType;
     }
+    
 }

@@ -11,8 +11,10 @@ public interface VideoService {
 
     List<Video> getByUser(Long userId);
 
+    Video getByPathToVideo(String pathToVideo);
+
     Video saveOrUpdate(Video video);
 
-    void delete(VideoIdentity videoId);
+    Video delete(VideoIdentity videoId);
 
 }

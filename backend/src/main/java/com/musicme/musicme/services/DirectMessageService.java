@@ -11,7 +11,7 @@ public interface DirectMessageService {
     
     List<DirectMessage> getByUsersMatching(Long user1Id, Long user2Id);
 
-    DirectMessage sendMessage(DirectMessage directMessage);
+    DirectMessage save(DirectMessage directMessage);
 
     DirectMessage delete(DirectMessageIdentity directMessageIdentity);
 

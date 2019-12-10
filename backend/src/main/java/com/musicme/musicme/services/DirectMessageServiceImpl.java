@@ -48,7 +48,7 @@ public class DirectMessageServiceImpl implements DirectMessageService {
     }
 
     @Override
-    public DirectMessage sendMessage(DirectMessage directMessage) {
+    public DirectMessage save(DirectMessage directMessage) {
         this.directMessageRepository.save(directMessage);
         return directMessage;
     }

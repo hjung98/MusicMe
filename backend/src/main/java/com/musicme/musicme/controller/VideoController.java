@@ -8,6 +8,7 @@ import com.musicme.musicme.services.VideoServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
@@ -32,8 +33,14 @@ public class VideoController {
 
     @GetMapping("/user/video/remove") 
     public Video delete(String timestamp, Long userId) {
-        User user = this.userService.getById(userId);
-        VideoIdentity videoIdentity = new VideoIdentity(user, timestamp);
+        // User user = this.userService.getById(userId);
+        VideoIdentity videoIdentity = new VideoIdentity(userId, timestamp);
         return this.videoService.delete(videoIdentity);
     }
+
+    @GetMapping("/videos/{id}")
+    public List<Video> getUserVideos(@PathVariable Long id) {
+        return this.videoService.getByUser(id);
+    }
+
 }

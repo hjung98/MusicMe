@@ -7,28 +7,26 @@ import java.io.Serializable;
 @Embeddable
 public class VideoIdentity implements Serializable{
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", insertable = false, updatable = false)
-    private User user;
+    private static final long serialVersionUID = 1L;
 
-    @NotNull
-    @Column(name = "timestamp")
-    private String timestamp;
+    public Long userId;
 
-    public VideoIdentity(User user, String timestamp) {
-        this.user = user;
+    public String timestamp;
+
+    public VideoIdentity(Long userId, String timestamp) {
+        this.userId = userId;
         this.timestamp = timestamp;
     }
 
     public VideoIdentity() {
     }
 
-    public User getUser() {
-        return this.user;
+    public Long getUser() {
+        return this.userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser(Long userId) {
+        this.userId = userId;
     }
 
     public String getTimestamp() {
@@ -46,14 +44,14 @@ public class VideoIdentity implements Serializable{
 
         VideoIdentity that = (VideoIdentity) o;
 
-        if (!user.equals(that.user)) return false;
+        if (!userId.equals(that.userId)) return false;
 
         return timestamp.equals(that.timestamp);
     }
 
     @Override
     public int hashCode() {
-        int result = user.getId().hashCode();
+        int result = userId.hashCode();
         result = 31 * result + timestamp.hashCode();
 
         return result;

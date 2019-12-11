@@ -53,8 +53,8 @@ public class FileController {
                 .toUriString();
 
         User user = userRepository.findById(id).get();
-        VideoIdentity videoIdentity = new VideoIdentity(user, timestamp);
-        Video video = new Video(videoIdentity, "", caption, fileName);
+        VideoIdentity videoIdentity = new VideoIdentity(id, timestamp);
+        Video video = new Video(videoIdentity, user, "", caption, fileName);
         videoController.saveOrUpdate(video);
         return new UploadFileResponse(fileName, fileDownloadUri,
                 file.getContentType(), file.getSize());

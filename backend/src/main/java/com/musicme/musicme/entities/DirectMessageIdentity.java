@@ -7,41 +7,35 @@ import java.io.Serializable;
 @Embeddable
 public class DirectMessageIdentity implements Serializable {
 
-    @ManyToOne
-    @JoinColumn(name = "user_id_1", insertable = false, updatable = false)
-    private User user1;
+    private Long userId1;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id_2", insertable = false, updatable = false)
-    private User user2;
+    private Long userId2;
 
-    @NotNull
-    @Column(name = "timestamp")
     private String timestamp;
 
-    public DirectMessageIdentity(User user1, User user2, String timestamp) {
-        this.user1 = user1;
-        this.user2 = user2;
+    public DirectMessageIdentity(Long userId1, Long userId2, String timestamp) {
+        this.userId1 = userId1;
+        this.userId2 = userId2;
         this.timestamp = timestamp;
     }
 
     public DirectMessageIdentity() {
     }
 
-    public User getUser1() {
-        return this.user1;
+    public Long getUser1() {
+        return this.userId1;
     }
 
-    public void setUser1(User user1) {
-        this.user1 = user1;
+    public void setUser1(Long userId1) {
+        this.userId1 = userId1;
     }
 
-    public User getUser2() {
-        return this.user2;
+    public Long getUser2() {
+        return this.userId2;
     }
 
-    public void setUser2(User user2) {
-        this.user2 = user2;
+    public void setUser2(Long userId2) {
+        this.userId2 = userId2;
     }
 
     public String getTimestamp() {
@@ -59,14 +53,14 @@ public class DirectMessageIdentity implements Serializable {
 
         DirectMessageIdentity that = (DirectMessageIdentity) o;
 
-        if (!user1.equals(that.user1) && !user2.equals(that.user2)) return false;
+        if (!userId1.equals(that.userId1) && !userId2.equals(that.userId2)) return false;
 
         return timestamp.equals(that.timestamp);
     }
 
     @Override
     public int hashCode() {
-        int result = user1.getId().hashCode() + user2.getId().hashCode();
+        int result = userId1.hashCode() + userId2.hashCode();
         result = 31 * result + timestamp.hashCode();
 
         return result;

@@ -50,10 +50,4 @@ public class UserController {
         return this.userService.getCurrentUser(userPrincipal);
     }
 
-    @RequestMapping("/user/myvideos")
-    public List<Video> getUserVideos(@CurrentUser UserPrincipal userPrincipal) {
-        User user = getCurrentUser(userPrincipal);
-        return this.videoService.getByUser(user.getId());
-    }
-
 }

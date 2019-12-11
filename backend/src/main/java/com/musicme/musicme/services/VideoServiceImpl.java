@@ -42,8 +42,7 @@ public class VideoServiceImpl implements VideoService {
         VideoIdentity onlyUserId = new VideoIdentity();
         
         // Setting only user portion of composite key to obtain full list for said user
-        User user = userRepository.findById(userId).get();
-        onlyUserId.setUser(user);
+        onlyUserId.setUser(userId);
 
         // Creating a template of sorts with Example.class and then grabbing all videos that match these credentials
         Video example = new Video();

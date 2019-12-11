@@ -23,7 +23,8 @@ public class DirectMessageServiceImpl implements DirectMessageService {
     private UserRepository userRepository;
 
     @Autowired
-    public DirectMessageServiceImpl(DirectMessageRepository directMessageRepository) {
+    public DirectMessageServiceImpl(UserRepository userRepository, DirectMessageRepository directMessageRepository) {
+        this.userRepository = userRepository;
         this.directMessageRepository = directMessageRepository;
     }
 
@@ -34,11 +35,9 @@ public class DirectMessageServiceImpl implements DirectMessageService {
         // Creating DMId instance
         DirectMessageIdentity twoUsersId = new DirectMessageIdentity();
 
-        //  Setting only user1 and user2 fields of composite key
-        User user1 = userRepository.findById(id1).get();
-        User user2 = userRepository.findById(id2).get();
-        twoUsersId.setUser1(user1);
-        twoUsersId.setUser2(user2);
+        //  Setting only id1 and id2 fields of composite key
+        twoUsersId.setUser1(id1);
+        twoUsersId.setUser2(id2);
 
         // Creating template with Example.class and then grabbing all DMs that match these credentials
         DirectMessage example = new DirectMessage();
@@ -46,6 +45,8 @@ public class DirectMessageServiceImpl implements DirectMessageService {
         directMessageRepository.findAll(Example.of(example)).forEach(directMessages::add);
         return directMessages;
     }
+
+
 
     @Override
     public DirectMessage save(DirectMessage directMessage) {

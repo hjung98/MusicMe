@@ -9,7 +9,9 @@ public interface LikesService {
 
     List<Likes> listAll();
 
-    List<Likes> getByLikesIdentity(LikesIdentity likesIdentity);
+    List<Likes> getByVideo(String pathToVideo);
+
+    List<Likes> getByUser(Long id);
 
     Likes saveOrUpdate(Likes likes);
 

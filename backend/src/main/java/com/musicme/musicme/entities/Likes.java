@@ -9,7 +9,6 @@ public class Likes {
     @EmbeddedId
     private LikesIdentity likesIdentity;
 
-
     public Likes(LikesIdentity likesIdentity) {
         this.likesIdentity = likesIdentity;
     }

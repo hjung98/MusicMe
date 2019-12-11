@@ -7,11 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 @SpringBootApplication
-@EnableConfigurationProperties({AppProperties.class, FileStorageProperties.class})
-public class MusicmeApplication{
+@EnableConfigurationProperties({ AppProperties.class, FileStorageProperties.class })
+public class MusicmeApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MusicmeApplication.class, args);
 	}
-	
+
 }

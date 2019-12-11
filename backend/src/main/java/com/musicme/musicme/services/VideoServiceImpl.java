@@ -23,8 +23,9 @@ public class VideoServiceImpl implements VideoService {
     private UserRepository userRepository;
 
     @Autowired
-    public VideoServiceImpl(VideoRepository videoRepository) {
+    public VideoServiceImpl(VideoRepository videoRepository, UserRepository userRepository) {
         this.videoRepository = videoRepository;
+        this.userRepository = userRepository;
     }
 
     @Override

@@ -10,7 +10,7 @@ public class LikesIdentity implements Serializable {
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "video", referencedColumnName = "path_to_video", nullable = true)
     private Video video;
 
@@ -36,6 +36,25 @@ public class LikesIdentity implements Serializable {
 
     public void setVideo(Video video) {
         this.video = video;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        LikesIdentity that = (LikesIdentity) o;
+
+        if (!user.equals(that.user) && !video.equals(that.video)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = 31 * user.getEmail().hashCode() + video.getPathToVideo().hashCode();
+
+        return result;
     }
 
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component, Content } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,6 +7,7 @@ import {
   Dimensions,
   TouchableOpacity,
   ActivityIndicator,
+  Image,
   AsyncStorage
 } from "react-native";
 import {
@@ -17,25 +18,16 @@ import {
   Left,
   Right,
   Button,
-  Icon,
-  Container,
-  Header
+  Icon
 } from "native-base";
 import { Video } from "expo-av";
+import { DOWNLOAD } from "../../Config";
 import {
   MaterialCommunityIcons,
-  Ionicons,
-  Entypo,
   Feather,
   FontAwesome
 } from "@expo/vector-icons";
 import { withNavigationFocus } from "react-navigation";
-import { DOWNLOAD } from "../../Config";
-import DirectMessage from "./DirectMessage";
-
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
-
 const { height, width } = Dimensions.get("window");
 
 const cellHeight = height * 0.7;
@@ -53,6 +45,7 @@ export class Item extends React.PureComponent {
   };
   componentWillUnmount() {
     if (this.video) {
+      this.video.unloadAsync();
     }
   }
 
@@ -77,27 +70,19 @@ export class Item extends React.PureComponent {
   render() {
     const { userid, url, caption } = this.props;
     const uri = url;
-
     return (
       <View styles={{ alignSelf: "center", justifyContent: "center" }}>
         <Card>
           <CardItem>
             <Left>
               <Thumbnail
-                source={require("../../../assets/avatar.jpg")}
-                style={{
-                  width: 50,
-                  height: 50,
-                  borderRadius: 50 / 2,
-                  borderWidth: 2 / 3,
-                  borderColor: "grey"
-                }}
+                source={require("../../../assets/feed_images/1.jpg")}
               />
               <Body>
                 <Text style={{ fontSize: 15, fontWeight: "bold" }}>
-                  {userid}
+                  User: {userid}
                 </Text>
-                <Text note>MM/DD/YYYY</Text>
+                <Text note>Nov 18, 2018</Text>
               </Body>
             </Left>
           </CardItem>
@@ -164,7 +149,7 @@ export class Item extends React.PureComponent {
                   <FontAwesome
                     name="paper-plane-o"
                     onPress={() => {
-                      this.props.nav.navigation.navigate("DirectMessage");
+                      navigate("DirectMessage");
                     }}
                     style={{ color: "black", fontSize: 27 }}
                   />
@@ -181,7 +166,7 @@ export class Item extends React.PureComponent {
                 <Text
                   style={{ fontWeight: "bold", paddingRight: 5, fontSize: 15 }}
                 >
-                  {userid}
+                  User: {userid}
                 </Text>
                 <Text style={{ fontSize: 15 }}>{caption}</Text>
               </View>
@@ -193,7 +178,7 @@ export class Item extends React.PureComponent {
   }
 }
 
-class VideosFeed extends React.PureComponent {
+class ProfileVideo extends React.PureComponent {
   state = {
     items: [],
     loading: true,
@@ -217,10 +202,13 @@ class VideosFeed extends React.PureComponent {
   componentWillMount() {
     this.getVideos();
   }
+
   async getVideos() {
+    const id = await AsyncStorage.getItem("userId");
+    console.log(id);
     try {
       const videoEntities = await fetch(
-        "http://cosc-257-grp3.cs.amherst.edu:8080/feed"
+        `http://cosc-257-grp3.cs.amherst.edu:8080/videos/${id}`
       ).then(res => res.json());
 
       var updatedVideos = [];
@@ -251,6 +239,7 @@ class VideosFeed extends React.PureComponent {
       console.error("error loading videos", e);
     }
   }
+
   _onViewableItemsChanged = props => {
     const changed = props.changed;
     changed.forEach(item => {
@@ -266,6 +255,8 @@ class VideosFeed extends React.PureComponent {
   };
 
   handleRefresh() {
+    console.log("---------------");
+
     this.setState(
       {
         items: [],
@@ -276,11 +267,12 @@ class VideosFeed extends React.PureComponent {
       }
     );
   }
+
   loadItems = () => {
     const newItems = this.state.videosDisplayed.map((item, i) => ({
       ...item,
       id: i,
-      userid: item.id,
+      userId: item.id,
       caption: item.caption
     }));
     const items = [...newItems.reverse()];
@@ -289,7 +281,6 @@ class VideosFeed extends React.PureComponent {
   _renderItem = ({ item }) => {
     return (
       <Item
-        nav={this.props}
         ref={ref => {
           this.cellRefs[item.id] = ref;
         }}
@@ -303,74 +294,44 @@ class VideosFeed extends React.PureComponent {
     const { isFocused } = this.props;
 
     return (
-      <Container style={styles.container}>
-        <Header>
-          <Left>
-            <Icon
-              name="camera"
-              style={{ paddingLeft: 10, color: "transparent" }}
-            ></Icon>
-          </Left>
-          <Body>
-            <Text style={{ fontSize: 18, fontWeight: "bold" }}>MusicMe</Text>
-          </Body>
-          <Right>
-            <FontAwesome
-              name="paper-plane-o"
-              style={{
-                fontSize: 27,
-                paddingRight: 10
-              }}
-              onPress={() => {
-                this.props.navigation.navigate("DirectMessage");
-              }}
-            ></FontAwesome>
-          </Right>
-        </Header>
-        <View style={styles.container}>
-          {isFocused && (
-            <FlatList
-              style={{ flex: 1 }}
-              extraData={this.state}
-              data={items}
-              renderItem={this._renderItem}
-              keyExtractor={item => `${item.id}`}
-              onViewableItemsChanged={this._onViewableItemsChanged}
-              initialNumToRender={3}
-              maxToRenderPerBatch={3}
-              windowSize={4}
-              getItemLayout={(_data, index) => ({
-                length: cellHeight,
-                offset: cellHeight * index,
-                index
-              })}
-              viewabilityConfig={viewabilityConfig}
-              onRefresh={() => {
-                this.handleRefresh();
-              }}
-              refreshing={this.state.refreshing}
-              removeClippedSubviews={true}
-            />
-          )}
-        </View>
-      </Container>
+      <View style={styles.container}>
+        {isFocused && (
+          <FlatList
+            style={{ flex: 1 }}
+            extraData={this.state}
+            data={items}
+            renderItem={this._renderItem}
+            keyExtractor={item => `${item.id}`}
+            onViewableItemsChanged={this._onViewableItemsChanged}
+            initialNumToRender={3}
+            maxToRenderPerBatch={3}
+            windowSize={4}
+            getItemLayout={(_data, index) => ({
+              length: cellHeight,
+              offset: cellHeight * index,
+              index
+            })}
+            viewabilityConfig={viewabilityConfig}
+            onRefresh={() => {
+              this.handleRefresh();
+            }}
+            refreshing={this.state.refreshing}
+            removeClippedSubviews={true}
+            ListFooterComponent={
+              <TouchableOpacity
+                onPress={() => {
+                  this.props.navigat;
+                }}
+              >
+                <Text style={{ padding: 30 }}>Load more</Text>
+              </TouchableOpacity>
+            }
+          />
+        )}
+      </View>
     );
   }
 }
-
-const AppNavigator = createStackNavigator({
-  VideosFeed: {
-    screen: withNavigationFocus(VideosFeed),
-    navigationOptions: {
-      header: null
-    }
-  },
-  DirectMessage: { screen: DirectMessage }
-});
-
-const AppContainer = createAppContainer(AppNavigator);
-
-export default AppContainer;
 
 const styles = StyleSheet.create({
   container: {
@@ -416,3 +377,5 @@ const styles = StyleSheet.create({
     color: "#fff"
   }
 });
+
+export default withNavigationFocus(ProfileVideo);

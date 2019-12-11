@@ -1,17 +1,7 @@
 import React, { Component } from "react";
-import {
-  View,
-  Button,
-  StyleSheet,
-  Image,
-  Dimensions,
-  AsyncStorage
-} from "react-native";
-
-import { Asset } from "expo-asset";
+import { View, AsyncStorage } from "react-native";
 
 import LoginGesture from "./LoginGesture.js";
-import RegisterGesture from "./RegisterGesture";
 
 class Login extends Component {
   constructor(props) {
@@ -22,14 +12,12 @@ class Login extends Component {
       isReady: false
     };
     this.login = this.login.bind(this);
-    this.loginGoogle = this.loginGoogle.bind(this);
+    this.register = this.register.bind(this);
+    // this._saveUser = this._saveUser.bind(this);
+    this._loadData = this._loadData.bind(this);
   }
 
-  async loginGoogle() {}
-
   async register(signUpRequest) {
-    // const signUpRequest = Object.assign({}, this.state.credentials);
-
     this.setState({ showProgress: true });
     try {
       let response = await fetch(
@@ -43,22 +31,23 @@ class Login extends Component {
           body: JSON.stringify(signUpRequest)
         }
       );
-      let res = await response.text();
+      let res = await JSON.parse(response);
+
       if (response.status >= 200 && response.status < 300) {
-        this.props.navigation.navigate("login");
+        alert("You have succesfully signed up!");
       } else {
         //Handle error
         let error = res;
         throw error;
       }
     } catch (error) {
+      alert("Invalid Information. Try Again!");
       this.setState({ error: "Invalid Credentials" });
       this.setState({ showProgress: false });
     }
   }
 
   async login(loginRequest) {
-    await AsyncStorage.setItem("isLoggedIn", "true");
     this.setState({ showProgress: true });
     try {
       let response = await fetch(
@@ -72,10 +61,16 @@ class Login extends Component {
           body: JSON.stringify(loginRequest)
         }
       );
-      let res = await response.text();
-      if (response.status >= 200 && response.status < 300) {
+      let res = JSON.parse(await response.text());
+
+      if (res.id) {
+        // //store user info locally
+
+        await AsyncStorage.setItem("userId", `${res.id}`);
+        await AsyncStorage.setItem("userEmail", `${res.email}`);
+        await AsyncStorage.setItem("userName", `${res.name}`);
         await AsyncStorage.setItem("isLoggedIn", "true");
-        this.setState({ error: "", showProgress: false });
+
         this.props.navigation.navigate("HomeTab");
       } else {
         //Handle error
@@ -86,10 +81,19 @@ class Login extends Component {
       this.setState({ error: "Invalid Credentials", showProgress: false });
     }
   }
+  componentDidMount() {
+    this._loadData();
+  }
+  // _saveUser = async (id, email, name) => {
+  //   console.log("-----");
 
+  //   await AsyncStorage.setItem("userId", `${id}`);
+  //   await AsyncStorage.setItem("userEmail", `${email}`);
+  //   await AsyncStorage.setItem("userName", `${name}`);
+  // };
   _loadData = async () => {
     const isLoggedIn = await AsyncStorage.getItem("isLoggedIn");
-    this.props.navigation.navigate(isLoggedIn === "true" ? "HomeTab" : "login");
+    this.props.navigation.navigate(isLoggedIn == "true" ? "HomeTab" : "Login");
   };
   render() {
     return (
@@ -100,11 +104,7 @@ class Login extends Component {
           justifyContent: "flex-end"
         }}
       >
-        <LoginGesture
-          login={this.login}
-          loginGoogle={this.loginGoogle}
-          upperState={this.state}
-        />
+        <LoginGesture login={this.login} register={this.register} />
       </View>
     );
   }

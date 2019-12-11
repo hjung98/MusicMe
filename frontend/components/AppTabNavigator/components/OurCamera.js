@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, CameraRoll } from "react-native";
+import { Text, View, CameraRoll, AsyncStorage } from "react-native";
 import { withNavigationFocus } from "react-navigation";
 import { Camera } from "expo-camera";
 import * as Permissions from "expo-permissions";
@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 import VideoPlayer from "./VideoPlayer";
 import * as MediaLibrary from "expo-media-library";
 
-import { UPLOAD, DOWNLOAD } from "../../Config";
+import { UPLOAD } from "../../Config";
 class CameraScreen extends React.Component {
   camera = Camera;
 
@@ -51,6 +51,7 @@ class CameraScreen extends React.Component {
   };
   uploadVideo = async () => {
     let video = Object.assign({}, this.state.video);
+    const id = await AsyncStorage.getItem("userId");
 
     const data = new FormData();
     data.append("file", {
@@ -58,13 +59,14 @@ class CameraScreen extends React.Component {
       uri: video.uri
     });
 
-    // fetch(`http://148.85.77.212:8080/uploadFile/${user_id}`, {
-    fetch(`http://148.85.77.212:8080/uploadFile/19`, {
+    fetch(`${UPLOAD}${id}`, {
       method: "post",
 
       body: data
     })
       .then(res => {
+        alert("Video Succesfully Uploaded!");
+        this.exitVideoPlayer();
         console.log(res);
       })
       .catch(error => {

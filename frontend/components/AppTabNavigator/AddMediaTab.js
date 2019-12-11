@@ -1,10 +1,6 @@
 import React, { Component } from "react";
-import { View } from "react-native";
+
 import OurCamera from "./components/OurCamera";
-import {
-  TapGestureHandler,
-  RotationGestureHandler
-} from "react-native-gesture-handler";
 
 import { Entypo } from "@expo/vector-icons";
 

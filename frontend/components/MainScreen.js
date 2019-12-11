@@ -7,18 +7,12 @@ import { createStackNavigator } from "react-navigation-stack";
 import HomeTab from "./AppTabNavigator/HomeTab";
 import AddMediaTab from "./AppTabNavigator/AddMediaTab";
 import ProfileTab from "./AppTabNavigator/ProfileTab";
-import Register from "./Onboarding/Register";
+
 import Login from "./Onboarding/Login";
 import { Icon } from "native-base";
 
 const AppTabNavigator = createBottomTabNavigator(
   {
-    AddMediaTab: {
-      screen: AddMediaTab,
-      navigationOptions: {
-        tabBarVisible: false
-      }
-    },
     HomeTab: {
       screen: HomeTab,
       navigationOptions: {
@@ -27,9 +21,21 @@ const AppTabNavigator = createBottomTabNavigator(
         }
       }
     },
+    AddMediaTab: {
+      screen: AddMediaTab,
+      navigationOptions: {
+        tabBarVisible: false
+      }
+    },
 
     ProfileTab: {
-      screen: ProfileTab
+      screen: ProfileTab,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => {
+          return <Icon name="person" style={{ color: tintColor }} />;
+          tabBarVisible: true;
+        }
+      }
     }
   },
   {
@@ -47,14 +53,8 @@ const AppTabNavigator = createBottomTabNavigator(
 );
 
 const IntroStack = createStackNavigator({
-  login: {
+  Login: {
     screen: Login,
-    navigationOptions: {
-      header: null
-    }
-  },
-  register: {
-    screen: Register,
     navigationOptions: {
       header: null
     }
@@ -62,8 +62,8 @@ const IntroStack = createStackNavigator({
 });
 
 const MainStack = createSwitchNavigator({
-  // intro: IntroStack,
-  main: AppTabNavigator
+  main: IntroStack,
+  AppTabNavigator
 });
 
 const MainScreen = createAppContainer(MainStack);

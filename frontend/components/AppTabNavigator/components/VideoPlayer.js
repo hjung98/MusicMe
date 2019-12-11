@@ -1,7 +1,7 @@
 import { StyleSheet, TouchableOpacity, View } from "react-native";
 import { Video } from "expo-av";
 import React from "react";
-import { MaterialCommunityIcons, Entypo } from "@expo/vector-icons";
+import { MaterialCommunityIcons, Entypo, Feather } from "@expo/vector-icons";
 import { withNavigation } from "react-navigation";
 
 import { winWidth, winHeight } from "../../Camera/styles";
@@ -21,8 +21,8 @@ class VideoPlayer extends React.Component {
             style={{ width: winWidth, height: winHeight }}
           />
           <View style={styles.controlBar}>
-            <MaterialCommunityIcons
-              name="exit-to-app"
+            <Feather
+              name="x"
               style={{
                 color: "white",
                 flexDirection: "row",

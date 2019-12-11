@@ -42,8 +42,7 @@ public class VideoServiceImpl implements VideoService {
         VideoIdentity onlyUserId = new VideoIdentity();
         
         // Setting only user portion of composite key to obtain full list for said user
-        User user = userRepository.findById(userId).get();
-        onlyUserId.setUser(user);
+        onlyUserId.setUser(userId);
 
         // Creating a template of sorts with Example.class and then grabbing all videos that match these credentials
         Video example = new Video();
@@ -53,14 +52,19 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
+    public Video getByPathToVideo(String pathToVideo) {
+        return videoRepository.findByPathToVideo(pathToVideo);
+    }
+
+    @Override
     public Video saveOrUpdate(Video video) {
         videoRepository.save(video);
         return video;
     }
 
     @Override
-    public void delete(VideoIdentity videoId) {
-        videoRepository.deleteByVideoIdentity(videoId);
+    public Video delete(VideoIdentity videoId) {
+        return videoRepository.deleteByVideoIdentity(videoId);
     }
 
 }

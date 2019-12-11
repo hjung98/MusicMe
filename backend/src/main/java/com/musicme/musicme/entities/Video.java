@@ -18,11 +18,15 @@ public class Video {
     @Column(name="path_to_video")
     private String pathToVideo;
 
-    public Video(VideoIdentity videoIdentity, String location, String caption, String pathToVideo) {
+    @Column(name="num_likes")
+    private int likes;
+
+    public Video(VideoIdentity videoIdentity, String location, String caption, String pathToVideo, int likes) {
         this.videoIdentity = videoIdentity;
         this.location = location;
         this.caption = caption;
         this.pathToVideo = pathToVideo;
+        this.likes = likes;
     }
 
     public Video() {
@@ -58,6 +62,14 @@ public class Video {
 
     public void setPathToVideo(String pathToVideo) {
         this.pathToVideo = pathToVideo;
+    }
+
+    public int getLikes() {
+        return this.likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
 
 }

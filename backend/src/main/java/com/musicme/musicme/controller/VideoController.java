@@ -6,6 +6,8 @@ import com.musicme.musicme.entities.VideoIdentity;
 import com.musicme.musicme.services.UserServiceImpl;
 import com.musicme.musicme.services.VideoServiceImpl;
 
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +21,9 @@ public class VideoController {
 
     @Autowired
     UserServiceImpl userService;
+
+    @Autowired
+    LikesServiceImpl likesService;
 
     @GetMapping("/feed")
     public List<Video> getVideos() {
@@ -36,4 +41,9 @@ public class VideoController {
         VideoIdentity videoIdentity = new VideoIdentity(user, timestamp);
         return this.videoService.delete(videoIdentity);
     }
+
+    @PostMapping("/videos/{pathToVideo:.+}")
+    public void likeVideo(@PathVariable String pathToVideo) {
+    }
+
 }

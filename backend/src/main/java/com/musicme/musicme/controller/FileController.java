@@ -54,7 +54,7 @@ public class FileController {
 
         User user = userRepository.findById(id).get();
         VideoIdentity videoIdentity = new VideoIdentity(user, timestamp);
-        Video video = new Video(videoIdentity, "", caption, fileName);
+        Video video = new Video(videoIdentity, "", caption, fileName, 0);
         videoController.saveOrUpdate(video);
         return new UploadFileResponse(fileName, fileDownloadUri,
                 file.getContentType(), file.getSize());

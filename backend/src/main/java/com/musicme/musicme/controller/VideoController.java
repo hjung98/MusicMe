@@ -1,6 +1,9 @@
 package com.musicme.musicme.controller;
 
+import com.musicme.musicme.entities.User;
 import com.musicme.musicme.entities.Video;
+import com.musicme.musicme.entities.VideoIdentity;
+import com.musicme.musicme.services.UserServiceImpl;
 import com.musicme.musicme.services.VideoServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +17,23 @@ public class VideoController {
     @Autowired
     VideoServiceImpl videoService;
 
+    @Autowired
+    UserServiceImpl userService;
+
     @GetMapping("/feed")
     public List<Video> getVideos() {
         return this.videoService.listAll();
     }
 
+    @GetMapping("/user/video/saveorupdate")
     public Video saveOrUpdate(Video video) {
         return this.videoService.saveOrUpdate(video);
     }
 
+    @GetMapping("/user/video/remove") 
+    public Video delete(String timestamp, Long userId) {
+        User user = this.userService.getById(userId);
+        VideoIdentity videoIdentity = new VideoIdentity(user, timestamp);
+        return this.videoService.delete(videoIdentity);
+    }
 }

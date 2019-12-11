@@ -36,14 +36,6 @@ public class FileController {
     @Autowired
     private UserRepository userRepository;
 
-    // @PostMapping("/{id}/uploadMultipleFiles/")
-    // public List<UploadFileResponse> uploadMultipleFiles(@RequestParam("files") MultipartFile[] files, @PathVariable Long id) {
-    //     return Arrays.asList(files)
-    //             .stream()
-    //             .map(file -> uploadFile(file, id, caption))
-    //             .collect(Collectors.toList());
-    // }
-
     // On the assumption that to upload a video, you must be a user in our database
     @PostMapping("/uploadFile/{id}")
     public UploadFileResponse uploadFile(@RequestParam("file") MultipartFile file, @PathVariable Long id, String caption) {
